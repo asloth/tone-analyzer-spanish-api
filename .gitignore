@@ -8,6 +8,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#json files
+.json
+
 # C extensions
 *.so
 
@@ -152,3 +155,4 @@ Thumbs.db
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+df_service.json

@@ -60,7 +60,7 @@ def find_tendencies(data):
     nrmse = np.sqrt(mse)/(selected.max() - selected.min())
     #pendiente
     pendiente = coefficients[0]
-
+    plt.plot(selected)
     plt.plot([coefficients[0]*x + coefficients[1] for x in range(len(selected))])
     plt.savefig('files/analisis.png', bbox_inches='tight')
     #variacion

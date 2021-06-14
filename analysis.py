@@ -8,6 +8,7 @@ import scipy.stats as ss
 import json
 from pandas import json_normalize
 from datetime import datetime
+import base64
 
 
 def singleQuoteToDoubleQuote(singleQuoted):
@@ -67,7 +68,18 @@ def find_tendencies(data):
     cv2 = ss.variation(df["new_score"])
     #asimetria
     asimetria = ss.skew(df["new_score"])
-    d = {'pendiente': pendiente[0], 'variacion': cv2, 'asimetria': asimetria}
-    print(d)
+    
+    with open("files/analisis.png", "rb") as image_file:
+        encoded_string= image_file.read()
+
+    # second: base64 encode read data
+    # result: bytes (again)
+    base64_bytes = base64.b64encode(encoded_string)
+
+    # third: decode these bytes to text
+    # result: string (in utf-8)
+    base64_string = base64_bytes.decode('utf-8')
+
+    d = {"pendiente": pendiente[0], "variacion": cv2, "asimetria": asimetria, "image": base64_string}
     
     return d

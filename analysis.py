@@ -47,7 +47,7 @@ def find_tendencies(data):
     df['tone_name'] = df['tone_name'].replace('Sadness', 0)
     df['tone_name'] = df['tone_name'].replace('Anger', 1)
     df['tone_name'] = df['tone_name'].replace('Fear', 2) 
-    df['tone_name'] = df['tone_name'].replace('Happiness', 3) 
+    df['tone_name'] = df['tone_name'].replace('Joy', 3) 
 
     #calculamos el nuevo score
     df['new_score'] = df['tone_name'] + df['score']

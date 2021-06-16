@@ -9,7 +9,7 @@ import json
 from pandas import json_normalize
 from datetime import datetime
 import base64
-
+from os import remove
 
 def singleQuoteToDoubleQuote(singleQuoted):
             cList=list(singleQuoted)
@@ -63,6 +63,7 @@ def find_tendencies(data):
     pendiente = coefficients[0]
     plt.plot(selected)
     plt.plot([coefficients[0]*x + coefficients[1] for x in range(len(selected))])
+    remove("files/analisis.png")
     plt.savefig('files/analisis.png', bbox_inches='tight')
     #variacion
     cv2 = ss.variation(df["new_score"])

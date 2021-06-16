@@ -53,6 +53,8 @@ def find_tendencies(data):
     df['new_score'] = df['tone_name'] + df['score']
     #seleccionamos lo que queremos analizar
     selected = df[['new_score']]
+    
+    #plt.savefig('files/voyprimera.png')
     #calculamos coeficientes de pendiente y la Distancia media cuadrática mínima
     coefficients, residuals, _, _, _ = np.polyfit(range(len(selected.index)),selected,1,full=True)
     #error cuadratico medio
@@ -61,10 +63,19 @@ def find_tendencies(data):
     nrmse = np.sqrt(mse)/(selected.max() - selected.min())
     #pendiente
     pendiente = coefficients[0]
-    plt.plot(selected)
+    #plotear
+    selected.plot()
     plt.plot([coefficients[0]*x + coefficients[1] for x in range(len(selected))])
-    remove("files/analisis.png")
+    #modificar la leyenda
+    plt.legend(['Estado anímico'])
+    #arreglamos etiquetas del eje x
+    plt.xticks(rotation=45, ha="right")
+    #cambiamos date por fecha
+    plt.xlabel("Fechas")
+    #guardar la imagen
     plt.savefig('files/analisis.png', bbox_inches='tight')
+    #limpiar el plt
+    plt.clf()
     #variacion
     cv2 = ss.variation(df["new_score"])
     #asimetria
